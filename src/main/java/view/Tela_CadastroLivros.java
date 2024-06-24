@@ -62,6 +62,8 @@ public class Tela_CadastroLivros extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setTitle("Cadastar Livros");
+        setAlignmentX(2.0F);
+        setAlignmentY(2.0F);
 
         jLabel1.setText("Titulo");
 

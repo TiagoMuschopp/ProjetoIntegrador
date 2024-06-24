@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import model.Livro;
 import server.Conexao;
 
 public class Cadastro {
@@ -86,6 +87,46 @@ public class Cadastro {
                     conn.close();
                 } catch (SQLException e) {
                     System.err.println("Erro ao fechar a conexão: " + e.getMessage());
+                }
+            }
+        }
+    }
+    
+    
+    public void atualizarLivro(Livro livro) {
+        String sql = "UPDATE tb_livro SET TITULO = ?, ISBN = ?, AUTOR = ?, EDITORA = ?, PUBLICADO = ?, GENERO = ?, PAGINAS = ?, QTD_LIVROS = ? WHERE ID = ?";
+        PreparedStatement ps = null;
+        Connection conn = null;
+
+        try {
+            conn = new Conexao().conecta();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, livro.getTitulo());
+            ps.setString(2, livro.getIsbn());
+            ps.setString(3, livro.getAutor());
+            ps.setString(4, livro.getEditora());
+            ps.setString(5, livro.getPublicado());
+            ps.setString(6, livro.getGenero());
+            ps.setInt(7, livro.getPaginas());
+            ps.setInt(8, livro.getQtd_livros());
+            ps.setInt(9, livro.getId());
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
             }
         }

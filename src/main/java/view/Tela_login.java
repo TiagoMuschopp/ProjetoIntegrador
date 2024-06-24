@@ -137,6 +137,9 @@ public class Tela_login extends javax.swing.JFrame {
          String senha = new String(input_senha.getPassword());
           Acesso acess = new Acesso();
          boolean loginsucesso = acess.VerificarLogin(nome, senha);
+         if(loginsucesso){
+             this.setVisible(false);
+         }
                  
        
     }//GEN-LAST:event_button_entrarActionPerformed

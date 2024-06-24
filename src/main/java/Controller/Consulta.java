@@ -4,6 +4,8 @@
  */
 package Controller;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -76,18 +78,19 @@ public class Consulta {
              Connection conn = conexao.conecta();
 
             // Prepara a consulta SQL para recuperar os títulos dos livros
-            String sql = "SELECT TITULO, AUTOR, GENERO, ISBN FROM tb_livro";
+            String sql = "SELECT ID_LIVRO, TITULO, AUTOR, GENERO, ISBN FROM tb_livro";
             stmt = conn.prepareStatement(sql);
 
             // Executa a consulta
             ResultSet resultSet = stmt.executeQuery();
             // Popula o modelo de dados do JTable com os títulos dos livros
             while (resultSet.next()) {
+                int id = resultSet.getInt("ID_LIVRO");
                 String titulo = resultSet.getString("TITULO");
                 String autor = resultSet.getString("AUTOR");
                 String genero = resultSet.getString("GENERO");
                 String isbn = resultSet.getString("ISBN");
-                model.addRow(new Object[]{titulo, autor, genero, isbn });
+                model.addRow(new Object[]{id, titulo, autor, genero, isbn });
             }
 
         } catch (SQLException e) {
@@ -105,4 +108,6 @@ public class Consulta {
            
         }
     }
+    
+    
 }

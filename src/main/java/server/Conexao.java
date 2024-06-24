@@ -20,7 +20,7 @@ public class Conexao {
         Connection conn = null;
         
         try {
-            String url = "jdbc:mysql://localhost:3306/bd_biblioteca?user=root&password=701032";
+            String url = "jdbc:mysql://localhost:3306/bd_biblioteca?user=tiago&password=701032";
             conn = DriverManager.getConnection(url);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());

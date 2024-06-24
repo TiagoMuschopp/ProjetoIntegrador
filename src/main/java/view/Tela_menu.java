@@ -17,6 +17,8 @@ public class Tela_menu extends javax.swing.JFrame {
         initComponents();
         
     }
+    
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,10 +33,12 @@ public class Tela_menu extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,7 +57,7 @@ public class Tela_menu extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
-        jMenu1.setText("Telas");
+        jMenu1.setText("Cadastrar");
 
         jMenuItem1.setText("Cadastrar Livros");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -63,14 +67,6 @@ public class Tela_menu extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
-        jMenuItem2.setText("Consultar Livros");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem2);
-
         jMenuItem3.setText("Cadastrar Usuarios");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,18 +75,34 @@ public class Tela_menu extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem3);
 
-        jMenuItem4.setText("Emprestar Livro");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem4);
-
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Sobre");
+        jMenu2.setText("Consultar");
+
+        jMenuItem5.setText("Consultar Livro");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem5);
+
         jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Empréstimo");
+
+        jMenuItem2.setText("Emprestar");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu3);
+
+        jMenu4.setText("Sobre");
+        jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
 
@@ -102,15 +114,9 @@ public class Tela_menu extends javax.swing.JFrame {
         Tela_CadastroLivros cad = new Tela_CadastroLivros();
         jPanel1.add(cad);
         cad.setVisible(true);
+        cad.setLocation(200, 200);
        cad.getInputTitulo().requestFocusInWindow();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        Tela_Consulta consul = new Tela_Consulta();
-        jPanel1.add(consul);
-        consul.setVisible(true);
-       
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         Tela_usuario user = new Tela_usuario();
@@ -118,11 +124,17 @@ public class Tela_menu extends javax.swing.JFrame {
         user.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        Tela_emprestimo emp = new Tela_emprestimo();
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+         Tela_Consulta consul = new Tela_Consulta();
+        jPanel1.add(consul);
+        consul.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+       Tela_emprestimo emp = new Tela_emprestimo();
         jPanel1.add(emp);
         emp.setVisible(true);
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,11 +174,13 @@ public class Tela_menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

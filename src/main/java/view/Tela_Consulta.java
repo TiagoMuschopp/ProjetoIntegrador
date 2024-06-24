@@ -7,7 +7,11 @@ package view;
 import Controller.Consulta;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
+import jdk.jfr.Event;
 
 /**
  *
@@ -18,7 +22,7 @@ public class Tela_Consulta extends javax.swing.JInternalFrame {
   private  String autor;
   private  String genero;
   private  String isbn;
-    Timer timer;
+  Timer timer;
     /**
      * Creates new form Tela_Consulta
      */
@@ -28,10 +32,12 @@ public class Tela_Consulta extends javax.swing.JInternalFrame {
        @Override
        public void actionPerformed(ActionEvent e){
          Consulta.carregarDadosDoBanco(jTable1);
+         
          }
              
         });
          timer.start();
+         
     }
 
     /**
@@ -157,15 +163,20 @@ public class Tela_Consulta extends javax.swing.JInternalFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Titulo", "Autor", "Genero", "Isbn", "Situação"
+                "Id", "Titulo", "Autor", "Genero", "Isbn", "Situação"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -193,6 +204,15 @@ public class Tela_Consulta extends javax.swing.JInternalFrame {
        Consulta.filtro(jTable1, null, null, null, isbn);
     }//GEN-LAST:event_input_isbnActionPerformed
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int row = jTable1.rowAtPoint(evt.getPoint());
+        
+       Object id_livro =jTable1.getValueAt(row, 0);
+        System.out.println("id livro" + id_livro);
+    }//GEN-LAST:event_jTable1MouseClicked
+    
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField input_autor;
