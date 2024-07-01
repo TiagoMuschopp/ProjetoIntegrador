@@ -4,20 +4,28 @@
  */
 package view;
 
+import Controller.Cadastro;
 import Controller.Consulta;
+import Controller.ControllerCadastro;
+import java.awt.BorderLayout;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import jdk.jfr.Event;
+import model.Livro;
 
 /**
  *
  * @author tiago
  */
 public class Tela_Consulta extends javax.swing.JInternalFrame {
+  private  int id;
   private  String titulo;
   private  String autor;
   private  String genero;
@@ -148,9 +156,9 @@ public class Tela_Consulta extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
+                .addContainerGap(49, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,6 +180,7 @@ public class Tela_Consulta extends javax.swing.JInternalFrame {
                 "Id", "Titulo", "Autor", "Genero", "Isbn", "Situação"
             }
         ));
+        jTable1.setMinimumSize(new java.awt.Dimension(200, 100));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -205,11 +214,22 @@ public class Tela_Consulta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_input_isbnActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        int row = jTable1.rowAtPoint(evt.getPoint());
-        
-       Object id_livro =jTable1.getValueAt(row, 0);
-        System.out.println("id livro" + id_livro);
+      int row = jTable1.rowAtPoint(evt.getPoint());
+    Object id_livro = jTable1.getValueAt(row, 0);
+    int id = (int) id_livro;
+    Livro livro = new Livro();
+    livro.exibirLivro(id);
+   
+    
+    // Crie a instância de Tela_editar e passe o ID
+    Tela_editar editar = new Tela_editar((Frame) SwingUtilities.getWindowAncestor(this), true);
+    editar.recebeId(id);
+    editar.iniciarDados(id);
+    // Exiba a janela de edição
+    editar.setVisible(true);
+    
     }//GEN-LAST:event_jTable1MouseClicked
+    
     
 
     

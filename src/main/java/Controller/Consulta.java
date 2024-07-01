@@ -32,23 +32,23 @@ public class Consulta {
 
     // Adiciona filtro para o título, se fornecido
     if (filtroTitulo != null && !filtroTitulo.isEmpty()) {
-    RowFilter<Object, Object> rowFilterTitulo = RowFilter.regexFilter(filtroTitulo, 0); // 0 é o índice da coluna do título
+    RowFilter<Object, Object> rowFilterTitulo = RowFilter.regexFilter(filtroTitulo, 1); // 1 é o índice da coluna do título
     filters.add(rowFilterTitulo);
     }
 
 // Adiciona filtro para o autor, se fornecido
     if (filtroAutor != null && !filtroAutor.isEmpty()) {
-    RowFilter<Object, Object> rowFilterAutor = RowFilter.regexFilter(filtroAutor, 1); // 1 é o índice da coluna do autor
+    RowFilter<Object, Object> rowFilterAutor = RowFilter.regexFilter(filtroAutor, 2); // 1 é o índice da coluna do autor
     filters.add(rowFilterAutor);
     }
     // Adiciona filtro para o genero, se fornecido
     if (filtroGenero != null && !filtroGenero.isEmpty()) {
-    RowFilter<Object, Object> rowFilterGenero = RowFilter.regexFilter(filtroGenero, 2); // 1 é o índice da coluna do autor
+    RowFilter<Object, Object> rowFilterGenero = RowFilter.regexFilter(filtroGenero, 3); // 1 é o índice da coluna do autor
     filters.add(rowFilterGenero);
     }
      // Adiciona filtro para o Isbn, se fornecido
     if (filtroIsbn != null && !filtroIsbn.isEmpty()) {
-    RowFilter<Object, Object> rowFilterIsbn = RowFilter.regexFilter(filtroIsbn, 3); // 1 é o índice da coluna do autor
+    RowFilter<Object, Object> rowFilterIsbn = RowFilter.regexFilter(filtroIsbn, 4); // 1 é o índice da coluna do autor
     filters.add(rowFilterIsbn);
     }
 

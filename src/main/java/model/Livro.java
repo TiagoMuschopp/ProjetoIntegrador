@@ -35,10 +35,13 @@ public class Livro {
        this.qtd_livros = qtd_livros;
     }
     
-     public void editarLivros(Livro livro) throws Exception{ //Cria exeções de falhas
-        // Passando valores recebidos com variavel cliente para metodo ConecaoCliente
+     public void editarLivros(Livro livro) throws Exception{ 
         new Cadastro().atualizarLivro(livro);
     }
+     
+     public Livro exibirLivro(int id){
+         return new Cadastro().consultarLivroPorId(id);
+     }
 
 
     public String getTitulo() {

@@ -4,19 +4,23 @@
  */
 package view;
 
+import java.awt.BorderLayout;
+import java.awt.Panel;
+import javax.swing.JPanel;
+
+
 /**
  *
  * @author tiago
  */
 public class Tela_menu extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form Tela_menu
      */
     public Tela_menu() {
         initComponents();
-        
-    }
+    }                                                                                                                                                                                       
     
    
 
@@ -43,16 +47,18 @@ public class Tela_menu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel1.setMinimumSize(new java.awt.Dimension(700, 600));
+        jPanel1.setPreferredSize(new java.awt.Dimension(700, 600));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 496, Short.MAX_VALUE)
+            .addGap(0, 700, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 327, Short.MAX_VALUE)
+            .addGap(0, 600, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -166,7 +172,9 @@ public class Tela_menu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+     
                 new Tela_menu().setVisible(true);
+                   
             }
         });
     }
@@ -181,6 +189,6 @@ public class Tela_menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JPanel jPanel1;
+    public javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

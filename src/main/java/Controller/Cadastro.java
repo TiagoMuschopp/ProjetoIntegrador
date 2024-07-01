@@ -93,42 +93,117 @@ public class Cadastro {
     }
     
     
-    public void atualizarLivro(Livro livro) {
-        String sql = "UPDATE tb_livro SET TITULO = ?, ISBN = ?, AUTOR = ?, EDITORA = ?, PUBLICADO = ?, GENERO = ?, PAGINAS = ?, QTD_LIVROS = ? WHERE ID = ?";
-        PreparedStatement ps = null;
-        Connection conn = null;
+       public void atualizarLivro(Livro livro) {
+         System.out.println("Método atualizarLivro recebido com livro: " + livro.getTitulo() + " - ISBN: " + livro.getIsbn() + "id:" + livro.getId());
+    String sql = "UPDATE tb_livro SET TITULO = ?, ISBN = ?, AUTOR = ?, EDITORA = ?, ANO_PUBLICACAO = ?, GENERO = ?, NUMERO_PAGINAS = ?, QTD_LIVROS = ? WHERE ID_LIVRO = ?";
+    PreparedStatement ps = null;
+    Connection conn = null;
 
-        try {
-            conn = new Conexao().conecta();
-            ps = conn.prepareStatement(sql);
-            ps.setString(1, livro.getTitulo());
-            ps.setString(2, livro.getIsbn());
-            ps.setString(3, livro.getAutor());
-            ps.setString(4, livro.getEditora());
-            ps.setString(5, livro.getPublicado());
-            ps.setString(6, livro.getGenero());
-            ps.setInt(7, livro.getPaginas());
-            ps.setInt(8, livro.getQtd_livros());
-            ps.setInt(9, livro.getId());
+    try {
+        conn = new Conexao().conecta();
+        ps = conn.prepareStatement(sql);
+        ps.setString(1, livro.getTitulo());
+        ps.setString(2, livro.getIsbn());
+        ps.setString(3, livro.getAutor());
+        ps.setString(4, livro.getEditora());
+        ps.setString(5, livro.getPublicado());
+        ps.setString(6, livro.getGenero());
+        ps.setInt(7, livro.getPaginas());
+        ps.setInt(8, livro.getQtd_livros());
+        ps.setInt(9, livro.getId());
 
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            if (ps != null) {
-                try {
-                    ps.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+        System.out.println("ID do livro a ser atualizado: " + livro.getId());
+
+        int rowsAffected = ps.executeUpdate();
+        if (rowsAffected > 0) {
+            System.out.println("Livro atualizado com sucesso!");
+        } else {
+            System.out.println("Nenhum livro atualizado. Verifique o ID do livro.");
+        }
+    } catch (SQLException e) {
+        System.out.println("Erro ao atualizar livro: " + e.getMessage());
+        e.printStackTrace();
+    } finally {
+        if (ps != null) {
+            try {
+                ps.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+        }
+        if (conn != null) {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
+}
+
+    
+    public Livro consultarLivroPorId(int id) {
+    String sql = "SELECT * FROM tb_livro WHERE ID_LIVRO = ?";
+    PreparedStatement ps = null;
+    Connection conn = null;
+    ResultSet rs = null;
+    Livro livro = null;
+
+    try {
+        conn = new Conexao().conecta();
+        if (conn != null) {
+            System.out.println("Conexão estabelecida com sucesso.");
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                livro = new Livro();
+                livro.setId(rs.getInt("ID_LIVRO"));
+                livro.setTitulo(rs.getString("TITULO"));
+                livro.setIsbn(rs.getString("ISBN"));
+                livro.setAutor(rs.getString("AUTOR"));
+                livro.setEditora(rs.getString("EDITORA"));
+                livro.setPublicado(rs.getString("ANO_PUBLICACAO"));
+                livro.setGenero(rs.getString("GENERO"));
+                livro.setPaginas(rs.getInt("NUMERO_PAGINAS"));
+                livro.setQtd_livros(rs.getInt("QTD_LIVROS"));
+                System.out.println("Livro encontrado: " + livro.getTitulo());
+            } else {
+                System.out.println("Nenhum livro encontrado com o ID: " + id);
+            }
+        } else {
+            System.out.println("Falha ao estabelecer a conexão.");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        if (rs != null) {
+            try {
+                rs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if (ps != null) {
+            try {
+                ps.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if (conn != null) {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    return livro;
+}
+
+
+  
 }
